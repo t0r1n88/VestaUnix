@@ -230,7 +230,8 @@ def set_rus_locale():
     """
     locale.setlocale(
         locale.LC_ALL,
-        'rus_rus' if sys.platform == 'win32' else 'ru_RU.UTF-8')
+        # 'rus_rus' if sys.platform == 'win32' else 'ru_RU.UTF-8')
+        'rus_rus' if sys.platform == 'linux' else 'ru_RU.UTF-8')
 
 def convert_date(cell):
     """
@@ -663,11 +664,11 @@ if __name__ == '__main__':
     lbl_hello.grid(column=0, row=0, padx=10, pady=25)
 
     # # Картинка . Пришлось переименовывать переменную, иначе картинка не отображалась
-    # path_to_img_prep = resource_path('logo.png')
-    # img_prep = PhotoImage(file=path_to_img_prep)
-    # Label(tab_preparation,
-    #       image=img_prep
-    #       ).grid(column=1, row=0, padx=10, pady=25)
+    path_to_img_prep = resource_path('logo.png')
+    img_prep = PhotoImage(file=path_to_img_prep)
+    Label(tab_preparation,
+          image=img_prep
+          ).grid(column=1, row=0, padx=10, pady=25)
 
     # Создаем область для того чтобы поместить туда подготовительные кнопки(выбрать файл,выбрать папку и т.п.)
     frame_data_prep = LabelFrame(tab_preparation, text='Подготовка')

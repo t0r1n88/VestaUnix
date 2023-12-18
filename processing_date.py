@@ -9,6 +9,8 @@ from openpyxl.utils.dataframe import dataframe_to_rows
 from openpyxl.utils import get_column_letter
 from openpyxl.styles import Font
 import time
+import sys
+import locale
 import warnings
 
 warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
@@ -27,6 +29,7 @@ logging.basicConfig(
 )
 
 
+
 def extract_number_month(cell):
     """
     Функция для извлечения номера месяца
@@ -39,7 +42,8 @@ def extract_name_month(cell):
     Функция для извлечения названия месяца
     Взято отсюда https://ru.stackoverflow.com/questions/1045154/Вывод-русских-символов-из-pd-timestamp-month-name
     """
-    return cell.month_name(locale='Russian')
+    # return cell.month_name(locale='Russian')
+    return cell.month_name()
 
 
 def extract_year(cell):
@@ -67,6 +71,7 @@ def calculate_age(born, raw_selected_date):
                              f'Введена некорректная дата относительно которой нужно провести обработку\nПример корректной даты 01.09.2022')
         logging.exception('AN ERROR HAS OCCURRED')
         quit()
+
 
 
 def proccessing_date(raw_selected_date, name_column, name_file_data_date, path_to_end_folder_date):
@@ -278,18 +283,17 @@ def proccessing_date(raw_selected_date, name_column, name_file_data_date, path_t
                              f'Перенесите файлы, конечную папку с которой вы работете в корень диска. Проблема может быть\n '
                              f'в слишком длинном пути к обрабатываемым файлам или конечной папке.')
 
-    except:
-        logging.exception('AN ERROR HAS OCCURRED')
-        messagebox.showerror('Веста Обработка таблиц и создание документов',
-                             'Возникла ошибка!!! Подробности ошибки в файле error.log')
+    # except:
+    #     logging.exception('AN ERROR HAS OCCURRED')
+    #     messagebox.showerror('Веста Обработка таблиц и создание документов',
+    #                          'Возникла ошибка!!! Подробности ошибки в файле error.log')
     else:
         messagebox.showinfo('Веста Обработка таблиц и создание документов', 'Данные успешно обработаны')
 
 if __name__ == '__main__':
     raw_selected_date_main = '01.10.2023'
     name_column_main = 'Дата рождения'
-    name_file_data_date_main = 'data\Обработка дат\Сгенерированный массив данных для дат.xlsx'
+    name_file_data_date_main = 'data/Обработка дат/Сгенерированный массив данных для дат.xlsx'
     path_to_end_folder_date_main = 'data'
-
     proccessing_date(raw_selected_date_main, name_column_main, name_file_data_date_main, path_to_end_folder_date_main)
     print('Lindy Booth')

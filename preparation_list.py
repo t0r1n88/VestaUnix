@@ -407,7 +407,7 @@ def prepare_list(file_data:str,path_end_folder:str,checkbox_dupl:str):
                 for row in dataframe_to_rows(temp_df, index=False, header=True):
                     wb[short_value].append(row)
 
-            wb.save(f'{path_end_folder}\Дубликаты в каждой колонке {current_time}.xlsx')
+            wb.save(f'{path_end_folder}/Дубликаты в каждой колонке {current_time}.xlsx')
             # очищаем
             wb.close()
             del wb
@@ -431,17 +431,17 @@ def prepare_list(file_data:str,path_end_folder:str,checkbox_dupl:str):
                              f'Ошибка при обработке значения {e.args}')
         logging.exception('AN ERROR HAS OCCURRED')
 
-    except FileNotFoundError:
-        messagebox.showerror('Веста Обработка таблиц и создание документов',
-                             f'Перенесите файлы, конечную папку с которой вы работете в корень диска. Проблема может быть\n '
-                             f'в слишком длинном пути к обрабатываемым файлам или конечной папке.')
+    # except FileNotFoundError:
+    #     messagebox.showerror('Веста Обработка таблиц и создание документов',
+    #                          f'Перенесите файлы, конечную папку с которой вы работете в корень диска. Проблема может быть\n '
+    #                          f'в слишком длинном пути к обрабатываемым файлам или конечной папке.')
     else:
         messagebox.showinfo('Веста Обработка таблиц и создание документов', 'Данные успешно обработаны')
 
 
 if __name__ == '__main__':
     # file_data_main = 'data/Обработка списка/Список студентов военкомат.xlsx'
-    file_data_main = 'data/Обработка списка/Билет в будущее сводный отчет по ученикам.xlsx'
+    file_data_main = 'data/Обработка списка/Список студентов военкомат.xlsx'
     path_end_main = 'data'
     checkbox_main = 'Yes'
     start_time = time.time()
